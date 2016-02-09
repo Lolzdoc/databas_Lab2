@@ -97,13 +97,6 @@ public class BookingTab {
 		List<String> allmovies = db.movieTitles();
         //List<String> allmovies = new ArrayList<>();
 
-		// query the database via db
-		/* --- TODO: replace with own code ---*/
-		//allmovies.add("Pulp Fiction");
-		//allmovies.add("The Big Lebowski");
-		//allmovies.add("Whiplash");
-		/* --- END TODO --- */
-		
 		moviesList.setItems(FXCollections.observableList(allmovies));
 		// remove any selection
 		moviesList.getSelectionModel().clearSelection();
@@ -113,11 +106,7 @@ public class BookingTab {
 		List<String> alldates = null;//new ArrayList<String>();
 		if(m!=null) {
             alldates = db.movieDates(m);
-			// query the database via db
-			/* --- TODO: replace with own code --- */
-			//alldates.add("2016-02-01");
-			//alldates.add("2016-01-15");
-			/* --- END TODO --- */
+
             datesList.setItems(FXCollections.observableList(alldates));
 
         }

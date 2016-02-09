@@ -132,7 +132,29 @@ public class Database {
   	public Show getShowData(String mTitle, String mDate) {
 		Integer mFreeSeats = 42;
 		String mVenue = "Kino 2";
-		
+        Show show = new Show();
+        try {
+            String sql = "select * from Performance where Performance.movieName = ? and Perfomance.performanceDate = ? order by performanceDate";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,mTitle);
+            ps.setString(2,mDate);
+            ResultSet result = ps.executeQuery();
+            ArrayList<String> movieDates = new ArrayList<>();
+            while(result.next()) {
+                movieDates.add(result.getString("performanceDate"));
+            }
+            return movieDates;
+        } catch (SQLException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+
+
+
+
+
+
 		/* --- TODO: add code for database query --- */
 		
 		return new Show(mTitle, mDate, mVenue, mFreeSeats);
