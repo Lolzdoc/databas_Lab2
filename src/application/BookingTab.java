@@ -110,17 +110,17 @@ public class BookingTab {
 	}
 
 	private void fillDatesList(String m) {
-		List<String> alldates = new ArrayList<String>();
+		List<String> alldates = null;//new ArrayList<String>();
 		if(m!=null) {
-
+            alldates = db.movieDates(m);
 			// query the database via db
 			/* --- TODO: replace with own code --- */
-			alldates.add("2016-02-01");
-			alldates.add("2016-01-15");
+			//alldates.add("2016-02-01");
+			//alldates.add("2016-01-15");
 			/* --- END TODO --- */
-			
-		}
-		datesList.setItems(FXCollections.observableList(alldates));
+            datesList.setItems(FXCollections.observableList(alldates));
+
+        }
 		// remove any selection
 		datesList.getSelectionModel().clearSelection();
 	}

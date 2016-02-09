@@ -91,6 +91,25 @@ public class Database {
         }
     }
 
+
+    public ArrayList<String> movieDates(String movieName) {
+        try {
+            String sql = "select performanceDate from Performance where Performance.movieName = ? order by performanceDate";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,movieName);
+            ResultSet result = ps.executeQuery();
+            ArrayList<String> movieDates = new ArrayList<>();
+            while(result.next()) {
+                movieDates.add(result.getString("performanceDate"));
+            }
+            return movieDates;
+        } catch (SQLException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
     public ArrayList<String> movieTitles(){
         try {
             String sql = "select * from Movies order by movieName";
