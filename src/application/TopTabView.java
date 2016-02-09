@@ -22,4 +22,8 @@ public class TopTabView {
 		aLoginTabController.setDatabase(db);
 		aBookingTabController.setDatabase(db);
 	}
+
+    public BookingTab getBookingTab() {
+        return aBookingTabController;
+    }
 }

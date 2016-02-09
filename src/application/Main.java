@@ -30,6 +30,7 @@ public class Main extends Application {
 			TopTabView wc = (TopTabView) loader.getController();
 			wc.setDatabase(db);
 
+
 			// opening database connection
 			/* --- TODO: change xxx to your user name, yyy to your passowrd --- */	        
 			if(!db.openConnection("db116", "mrd163yv")) {
@@ -39,7 +40,7 @@ public class Main extends Application {
 				alert.setContentText("Could not connect to the database! Check console for details.");
 				alert.showAndWait();
 			}
-			
+            wc.getBookingTab().initializeFix();
 			// show the main window
 			primaryStage.setTitle("Movie Booking System");
 			primaryStage.setScene(scene);

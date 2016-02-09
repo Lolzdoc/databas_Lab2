@@ -33,13 +33,15 @@ public class BookingTab {
 	
 	private Database db;
 	private Show crtShow = new Show();
-	
+    public void initializeFix() {
+        fillNamesList();
+        fillDatesList(null);
+        fillShow(null,null);
+    }
 	public void initialize() {
 		System.out.println("Initializing BookingTab");
 				
-		fillNamesList();
-		fillDatesList(null);
-		fillShow(null,null);
+
 		
 		// set up listeners for the movie list selection
 		moviesList.getSelectionModel().selectedItemProperty().addListener(
@@ -92,13 +94,14 @@ public class BookingTab {
 	}
 	
 	private void fillNamesList() {
-		List<String> allmovies = new ArrayList<String>();
+		List<String> allmovies = db.movieTitles();
+        //List<String> allmovies = new ArrayList<>();
 
 		// query the database via db
-		/* --- TODO: replace with own code --- */
-		allmovies.add("Pulp Fiction");
-		allmovies.add("The Big Lebowski");
-		allmovies.add("Whiplash");
+		/* --- TODO: replace with own code ---*/
+		//allmovies.add("Pulp Fiction");
+		//allmovies.add("The Big Lebowski");
+		//allmovies.add("Whiplash");
 		/* --- END TODO --- */
 		
 		moviesList.setItems(FXCollections.observableList(allmovies));

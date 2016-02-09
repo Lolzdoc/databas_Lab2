@@ -1,6 +1,9 @@
 package application;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Database is a class that specifies the interface to the 
  * movie database. Uses JDBC and the MySQL Connector/J driver.
@@ -88,17 +91,20 @@ public class Database {
         }
     }
 
-    public String[] movieTitles(){
-        String sql = "select * from Movies";
+    public ArrayList<String> movieTitles(){
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet user = ps.executeQuery();
-            String[] movieList
-            return user.next();
+            String sql = "select * from Movies order by movieName";
+            PreparedStatement ps1 = conn.prepareStatement(sql);
+            ResultSet result = ps1.executeQuery();
+            ArrayList<String> movieList = new ArrayList<>();
+            while(result.next()) {
+               movieList.add(result.getString("movieName"));
+            }
+            return movieList;
         } catch (SQLException e) {
             System.err.println(e);
             e.printStackTrace();
-            return false;
+            return new ArrayList<>();
         }
     }
 
