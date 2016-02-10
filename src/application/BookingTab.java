@@ -67,12 +67,21 @@ public class BookingTab {
 		// or directly give a handler name in the fxml, as in the LoginTab class
 		bookTicket.setOnAction(
 				(event) -> {
-					String movie = moviesList.getSelectionModel().getSelectedItem();
-					String date = datesList.getSelectionModel().getSelectedItem();
-					/* --- TODO: should attempt to book a ticket via the database --- */
-					/* --- do not forget to report booking number! --- */
-					/* --- update the displayed details (free seats) --- */
-					report("Booked one ticket to "+movie+" on "+date);
+                    String movie = moviesList.getSelectionModel().getSelectedItem();
+                    String date = datesList.getSelectionModel().getSelectedItem();
+
+
+                    if (CurrentUser.instance().isLoggedIn()){
+                        if (db.bookTicket(movie, date, CurrentUser.instance().getCurrentUserId()) != (-1)) {
+                            report("Booked one ticket to " + movie + " on " + date);
+                            fillShow(movie,date);
+                        } else {
+                            report("Failed! Unable to Book one ticket");
+                        }
+                } else {
+                        report("Failed! Please Sign in using your Username");
+                    }
+
 				});
 		
 		report("Ready.");
